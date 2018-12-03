@@ -165,13 +165,13 @@ public class NeuralNetwork {
             gradients.multiply(error[i + 1]);
             gradients.multiply(learningRate);
 
-            Matrix pt = Matrix.transpose(layerOutput[i]);
+            Matrix pt = layerOutput[i].transpose();
             Matrix delta = Matrix.multiply(gradients, pt);
 
             weights[i].add(delta);
             biases[i].add(gradients);
 
-            Matrix t = Matrix.transpose(weights[i]);
+            Matrix t = weights[i].transpose();
             error[i] = Matrix.multiply(t, error[i + 1]);
         }
     }
